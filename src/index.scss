@@ -1,0 +1,503 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
+
+/*==========================
+COLORS
+============================*/
+$background_primary_color: #373a47;
+$background_color: #f3f3f3;
+$button_color: #7b748d;
+$text_dark: #60636d;
+$text_light: #f3f3f3;
+$border_color: #7b748d;
+$border_radius: 4px;
+
+/*==========================
+DEFAULT STYLES
+============================*/
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 85.5%;
+}
+
+body {
+  color: $text_dark;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  background-color: $background_color;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.project__item--active .item__content {
+  font-weight: 700;
+}
+
+/*==========================
+BUTTON STYLES
+============================*/
+button {
+  background-color: $button_color;
+  color: $text_light;
+  height: 44px;
+  font-size: 110%;
+  border-radius: $border_radius;
+  border: 1px solid $border_color;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #926cbc;
+  border-color: #926cbc;
+}
+
+.add_project__btn {
+  background: transparent;
+  color: $button_color;
+  border: none;
+  transition: all 0.2s;
+  .pro__plus {
+    margin-right: 5px;
+    padding: 3px 4.3px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    transition: all 0.2s;
+  }
+}
+
+.add_project__btn:hover {
+  background: transparent;
+  color: #926cbc;
+  .pro__plus {
+    color: $text_light;
+    background: #926cbc;
+  }
+}
+
+/*==========================
+DROPDOWN STYLE
+============================*/
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.2s;
+  input {
+    color: $text_dark !important;
+  }
+  .dropdown__content {
+    width: 100%;
+    background: $background_color;
+    list-style: none;
+    border: 1px solid $border_color;
+    border-radius: $border_radius;
+    padding: 10px 0;
+    box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.2);
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .dropdown__item {
+      font-size: 90%;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+    .dropdown__item:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}
+.dropdown:hover {
+  .dropdown__content {
+    display: block;
+    border-color: #926cbc;
+  }
+}
+
+/*==========================
+LOGIN PAGE STYLES
+============================*/
+.login__page {
+  background-color: #373a47;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .login__form {
+    flex-basis: 301px;
+    background-color: $background_color;
+    padding: 23px;
+    border-radius: $border_radius;
+    box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    h1 {
+      font-size: 230%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form {
+      display: flex;
+      flex-direction: column;
+      * {
+        margin-bottom: 8px;
+      }
+      input {
+        height: 44px;
+        font-size: 90%;
+        padding: 10px;
+        border-radius: $border_radius;
+        border: 1px solid $border_color;
+      }
+      input:focus {
+        border-color: #926cbc;
+      }
+      .google {
+        background: #ff8980;
+        border: 1px solid #ff8980;
+      }
+      .google:hover {
+        background: #e27a73;
+        border: 1px solid #e27a73;
+      }
+      .facebook {
+        background: #99c4fc;
+        border: 1px solid #99c4fc;
+      }
+      .facebook:hover {
+        background: #88addd;
+        border: 1px solid #88addd;
+      }
+    }
+  }
+}
+
+/*==========================
+OVERLAY MADAL STYLE
+============================*/
+.add_project__modal,
+.add_task__modal {
+  background: rgba(55, 59, 72, 0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .add__project,
+  .add__task {
+    flex-basis: 280px;
+    background-color: $background_color;
+    padding: 23px;
+    border-radius: $border_radius;
+    box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.2);
+    .add_project__form,
+    .add_task__form {
+      display: flex;
+      flex-direction: column;
+      h2 {
+        font-size: 170%;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      input {
+        height: 44px;
+        font-size: 90%;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: $border_radius;
+        border: 1px solid $border_color;
+      }
+      input[type="date"] {
+        color: $text_dark;
+        font-size: 110%;
+        padding: 13px;
+      }
+      textarea {
+        color: $text_dark;
+        font-size: 110%;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: $border_radius;
+        border: 1px solid $border_color;
+      }
+      input:focus,
+      textarea:focus {
+        border-color: #926cbc;
+      }
+      .project__footer,
+      .task__footer {
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        button {
+          height: auto;
+          padding: 8px 10px;
+          margin-left: 5px;
+        }
+        .add_project__cancel,
+        .add_task__cancel {
+          background: transparent;
+          color: $text_dark;
+        }
+      }
+    }
+  }
+}
+
+/*==========================
+APP PAGE STYLES
+============================*/
+.app {
+  display: grid;
+  .container {
+    width: 800px;
+    margin: 0 auto;
+  }
+  header {
+    background: $background_primary_color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    .container {
+      padding: 7px 10px;
+      display: flex;
+      justify-content: space-between;
+      .logout__btn {
+        height: auto;
+        padding: 0 10px;
+      }
+    }
+    img {
+      width: 28px;
+      height: auto;
+    }
+  }
+  .content {
+    display: grid;
+    grid-template-columns: 1.2fr 3fr;
+    grid-template-rows: 1fr;
+    .sidebar {
+      height: 100vh;
+      padding: 80px 10px 10px 10px;
+      border-right: 1px solid rgba(96, 99, 109, 0.1);
+      .project__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        .project__item {
+          padding: 7px 0;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          .item__icon {
+            flex-basis: 17px;
+            margin-right: 5px;
+            display: flex;
+            justify-content: center;
+            .fa-calendar {
+              color: $button_color;
+              font-size: 125%;
+            }
+            .fa-circle {
+              color: $button_color;
+              font-size: 95%;
+            }
+          }
+          .item__content {
+            .item__counter {
+              color: #b9b9b9;
+            }
+          }
+        }
+      }
+    }
+    .main__content {
+      height: 100vh;
+      padding: 70px 35px 35px 35px;
+      border-right: 1px solid rgba(96, 99, 109, 0.1);
+      h2 {
+        font-size: 170%;
+      }
+      .add__task__btn {
+        height: 40px;
+        width: 40px;
+        font-size: 130%;
+        border-radius: 50%;
+        display: flex;
+        padding: 11px;
+        margin: 30px auto;
+      }
+      .task__list {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        .task__item {
+          display: flex;
+          align-items: flex-start;
+          padding: 12px 5px;
+          border-bottom: 1px solid rgba(96, 99, 109, 0.1);
+          .check__box {
+            flex-basis: 20px;
+            margin-top: 2px;
+            margin-right: 10px;
+            cursor: pointer;
+            .checker {
+              height: 18px;
+              width: 18px;
+              padding: 4.2px;
+              border: 1px solid $border_color;
+              border-radius: 50%;
+              display: flex;
+              .fa-check {
+                font-size: 60%;
+                opacity: 0;
+                transition: all 0.2s;
+              }
+            }
+            .checker:hover {
+              .fa-check {
+                opacity: 1;
+              }
+            }
+          }
+          .task__content {
+            font-size: 95%;
+            letter-spacing: 0.8px;
+            .tesk__timer {
+              color: #a1a1a1;
+              font-size: 88%;
+              margin-top: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*==========================
+QUERIES
+============================*/
+
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 900px) {
+  html {
+    box-sizing: border-box;
+    font-size: 79.5%;
+  }
+
+  .app {
+    .container {
+      width: 600px;
+      padding: 0 10px;
+    }
+    header {
+      .container {
+        padding: 7px 30px;
+      }
+      img {
+        width: 25px;
+        height: auto;
+      }
+    }
+    .main__content {
+      .add__task__btn {
+        padding: 8px 16px;
+      }
+    }
+  }
+
+  .add_project__btn {
+    .pro__plus {
+      margin-right: 5px;
+      padding: 4px 4.3px;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .app {
+    .container {
+      width: 100%;
+    }
+    header {
+      z-index: 2;
+      .container {
+        width: 100%;
+      }
+    }
+    .content {
+      position: relative;
+      grid-template-columns: 1fr;
+      .sidebar {
+        position: fixed;
+        width: 160px;
+        top: 51px;
+        left: 0;
+        z-index: 1;
+        background: $background_color;
+        padding: 10px 5px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        transform: translateX(-100%);
+        transition: all 1s;
+      }
+      .sidebar::before {
+        content: "\039e";
+        position: absolute;
+        top: 10px;
+        right: -33px;
+        background: $background_primary_color;
+        color: $text_light;
+        padding: 8px 12px;
+        border-top-right-radius: $border_radius;
+        border-bottom-right-radius: $border_radius;
+      }
+      .sidebar:hover {
+        transform: translateX(0%);
+      }
+      .main__content {
+        padding: 70px 10px 35px 10px;
+        border-right: none;
+        h2 {
+          text-align: center;
+        }
+        .add__task__btn {
+          padding: 8px 13px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+}
