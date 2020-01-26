@@ -99,7 +99,7 @@ DROPDOWN STYLE
   position: relative;
   transition: all 0.2s;
   input {
-    color: $text_dark !important;
+    color: $text_dark;
   }
   .dropdown__content {
     width: 100%;
@@ -109,26 +109,34 @@ DROPDOWN STYLE
     border-radius: $border_radius;
     padding: 10px 0;
     box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.2);
-    display: none;
+    // display: none;
     position: absolute;
     top: 0;
     left: 0;
+    height: 200px;
+    overflow-y: scroll;
     .dropdown__item {
       font-size: 90%;
       padding: 4px 8px;
       cursor: pointer;
+      i {
+        margin-right: 3px;
+      }
+      span {
+        color: $text_dark;
+      }
     }
     .dropdown__item:hover {
       background-color: #e0e0e0;
     }
   }
 }
-.dropdown:hover {
-  .dropdown__content {
-    display: block;
-    border-color: #926cbc;
-  }
-}
+// .dropdown:hover {
+//   .dropdown__content {
+//     display: block;
+//     border-color: #926cbc;
+//   }
+// }
 
 /*==========================
 LOGIN PAGE STYLES
@@ -204,6 +212,7 @@ OVERLAY MADAL STYLE
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
   .add__project,
   .add__task {
     flex-basis: 280px;
@@ -328,6 +337,7 @@ APP PAGE STYLES
             }
           }
           .item__content {
+            text-transform: capitalize;
             .item__counter {
               color: #b9b9b9;
               margin-left: 3px;
