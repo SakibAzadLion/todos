@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import Home from "./Home";
 import Login from "./Login";
 import base from "../base";
@@ -16,12 +17,25 @@ class App extends React.Component {
         },
         tasks: {}
       }
-    }
+    },
+    redirect: '/'
   };
 
   componentDidMount = () => {
-    
+    const uid = JSON.parse(localStorage.getItem('uid'));
+
+    this.updateUserId(uid);
+
+    // this.ref = base.syncState(`${uid}/projects`, {
+    //   context: this,
+    //   state: "projects"
+    // });
+    localStorage.removeItem('uid');
   };
+
+  componentWillUnmount = () => {
+    
+  }
 
   addProject = project => {
     //1) Take a copy of the existing state
@@ -59,7 +73,7 @@ class App extends React.Component {
 
   render() {
     if (!this.state.uid) {
-      return <Login updateUserId={this.updateUserId} />;
+      return <Redirect to={this.state.redirect} />;
     }
 
     return (

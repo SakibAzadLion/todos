@@ -11,6 +11,17 @@ class Login extends React.Component {
     isRegisterClicked: false
   };
 
+  componentWillUnmount = () => {
+    // this.props.history.push('project3h304m5e');
+  }
+  
+  authHandler = authData => {
+    //Add user id to the local state
+    localStorage.setItem('uid', JSON.stringify(authData.user.uid));
+
+    this.props.history.push('project3h304m5e');
+  }
+
   loginWithPass = e => {
     //1) Prevent from submiting
     e.preventDefault();
@@ -22,7 +33,7 @@ class Login extends React.Component {
         this.emailRef.current.value,
         this.passRef.current.value
       )
-      .then(authData=> this.props.updateUserId(authData.user.uid))
+      .then(this.authHandler)
       .catch(err => console.log(err));
   };
 

@@ -4,7 +4,7 @@ import "font-awesome/css/font-awesome.min.css";
 
 class Content extends React.Component {
   render() {
-    const tasks = this.props.projects[`${this.props.projectId}`].tasks || false;
+    const tasks = this.props.projects[`${this.props.projectId}`].tasks;
 
     if (tasks) {
       return (
