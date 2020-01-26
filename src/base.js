@@ -7,4 +7,7 @@ const firebaseApp = firebase.initializeApp({
     databaseURL: "https://todos-sakib.firebaseio.com"
 });
 
+const base = Rebase.createClass(firebaseApp.database());
+
 export { firebaseApp };
+export default base

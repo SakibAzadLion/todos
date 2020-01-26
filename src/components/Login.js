@@ -22,7 +22,7 @@ class Login extends React.Component {
         this.emailRef.current.value,
         this.passRef.current.value
       )
-      .then(u => console.log(u))
+      .then(authData=> this.props.updateUserId(authData.user.uid))
       .catch(err => console.log(err));
   };
 

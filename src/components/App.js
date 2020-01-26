@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "./Home";
 import Login from "./Login";
+import base from "../base";
 import uniqid from "uniqid";
 
 class App extends React.Component {
@@ -19,7 +20,7 @@ class App extends React.Component {
   };
 
   componentDidMount = () => {
-    // this.updateUrl("project3h304m5e");
+    
   };
 
   addProject = project => {
