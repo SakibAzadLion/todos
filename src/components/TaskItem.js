@@ -10,8 +10,8 @@ class TaskItem extends React.Component {
           </div>
         </div>
         <div className="task__content">
-          <div className="tesk__text">How are you what are you doing</div>
-          <div className="tesk__timer">5 Mar 2045</div>
+          <div className="tesk__text">{this.props.task.desc}</div>
+          <div className="tesk__timer">{this.props.task.date}</div>
         </div>
       </li>
     );

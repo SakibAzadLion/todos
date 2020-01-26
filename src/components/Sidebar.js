@@ -7,7 +7,14 @@ class Sidebar extends React.Component {
     return (
       <div className="sidebar">
         <ul className="project__list">
-          {Object.keys(this.props.projects).map(key => <ProjectItem key={key} project={this.props.projects[key]} />)}
+          {Object.keys(this.props.projects).map(key => (
+            <ProjectItem
+              key={key}
+              index={key}
+              project={this.props.projects[key]}
+              updateUrl={this.props.updateUrl}
+            />
+          ))}
         </ul>
         <button
           className="add_project__btn"

@@ -178,6 +178,13 @@ LOGIN PAGE STYLES
       input:focus {
         border-color: #926cbc;
       }
+      .register__btn {
+        text-align: right;
+        cursor: pointer;
+      }
+      .register__btn:hover {
+        color: #926cbc;
+      }
       .google {
         background: #ff8980;
         border: 1px solid #ff8980;

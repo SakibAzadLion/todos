@@ -46,10 +46,15 @@ class Home extends React.Component {
         <div className="container">
           <div className="content">
             <Sidebar
-              toggleClickState={this.toggleClickState}
               projects={this.props.projects}
+              toggleClickState={this.toggleClickState}
+              updateUrl={this.props.updateUrl}
             />
-            <Content toggleClickState={this.toggleClickState} projects={this.props.projects} />
+            <Content
+              projectId={this.props.projectId}
+              projects={this.props.projects}
+              toggleClickState={this.toggleClickState}
+            />
           </div>
         </div>
 
@@ -67,7 +72,7 @@ class Home extends React.Component {
 
         {this.state.isTaskClicked ? (
           <AddTask
-            addTask={this.props.addTask} 
+            addTask={this.props.addTask}
             // isDropdownClicked={this.state.isDropdownClicked}
             // projectInfo={this.state.projectInfo}
             // addProject={this.props.addProject}
