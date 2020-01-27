@@ -18,23 +18,21 @@ class App extends React.Component {
         tasks: {}
       }
     },
-    redirect: '/'
+    redirect: "/"
   };
 
   componentDidMount = () => {
-    const uid = JSON.parse(localStorage.getItem('uid'));
-
-    this.updateUserId(uid);
-
     // this.ref = base.syncState(`${uid}/projects`, {
     //   context: this,
     //   state: "projects"
     // });
     localStorage.removeItem('uid');
   };
-
-  componentWillUnmount = () => {
-    
+  
+  componentWillMount = () => {
+    const uid = JSON.parse(localStorage.getItem('uid'));
+  
+    this.updateUserId(uid);
   }
 
   addProject = project => {

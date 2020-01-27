@@ -10,10 +10,6 @@ class Login extends React.Component {
   state = {
     isRegisterClicked: false
   };
-
-  componentWillUnmount = () => {
-    // this.props.history.push('project3h304m5e');
-  }
   
   authHandler = authData => {
     //Add user id to the local state
