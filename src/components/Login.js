@@ -1,4 +1,5 @@
 import React from "react";
+import firebase from "firebase";
 import { firebaseApp } from "../base";
 
 class Login extends React.Component {
@@ -10,13 +11,21 @@ class Login extends React.Component {
   state = {
     isRegisterClicked: false
   };
-  
+
+  componentWillMount() {
+    firebaseApp.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.authHandler({ user });
+      }
+    });
+  }
+
   authHandler = authData => {
     //Add user id to the local state
-    localStorage.setItem('uid', JSON.stringify(authData.user.uid));
+    localStorage.setItem("uid", JSON.stringify(authData.user.uid));
 
-    this.props.history.push('project3h304m5e');
-  }
+    this.props.history.push("project3h304m5e");
+  };
 
   loginWithPass = e => {
     //1) Prevent from submiting

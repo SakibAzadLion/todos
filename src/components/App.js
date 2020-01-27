@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import firebase from "firebase";
 import Home from "./Home";
 import Login from "./Login";
 import base from "../base";
@@ -22,17 +23,25 @@ class App extends React.Component {
   };
 
   componentDidMount = () => {
-    // this.ref = base.syncState(`${uid}/projects`, {
-    //   context: this,
-    //   state: "projects"
-    // });
-    localStorage.removeItem('uid');
+    // if (this.state.uid) {
+    //   console.log(this.state.uid);
+    //   this.ref = base.syncState(`${this.state.uid}`, {
+    //     context: this,
+    //     state: "projects"
+    //   });
+    // }
+
+    localStorage.removeItem("uid");
   };
-  
+
   componentWillMount = () => {
-    const uid = JSON.parse(localStorage.getItem('uid'));
-  
+    const uid = JSON.parse(localStorage.getItem("uid"));
+
     this.updateUserId(uid);
+  };
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
   }
 
   addProject = project => {
@@ -61,12 +70,17 @@ class App extends React.Component {
 
   updateUserId = uid => {
     //1) Take a copy of the existing state
-    this.setState({ uid: uid})
-  }
+    this.setState({ uid: uid });
+  };
 
   updateUrl = id => {
     //1) Update the url
     this.props.history.push(id);
+  };
+
+  logout = async () => {
+    await firebase.auth().signOut();
+    this.setState({ uid: null });
   };
 
   render() {
@@ -81,6 +95,7 @@ class App extends React.Component {
         addTask={this.addTask}
         projects={this.state.projects}
         updateUrl={this.updateUrl}
+        logout={this.logout}
       />
     );
   }

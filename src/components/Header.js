@@ -6,7 +6,7 @@ class Header extends React.Component {
       <header className="header">
         <div className="container">
           <img src="../images/logo.png" alt="logo" />
-          <button className="logout__btn">Log Out</button>
+          <button className="logout__btn" onClick={this.props.logout}>Log Out</button>
         </div>
       </header>
     );

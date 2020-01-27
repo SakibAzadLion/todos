@@ -41,7 +41,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="app">
-        <Header />
+        <Header logout={this.props.logout} />
 
         <div className="container">
           <div className="content">
