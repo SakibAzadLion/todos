@@ -9,22 +9,12 @@ import uniqid from "uniqid";
 class App extends React.Component {
   state = {
     uid: null,
-    projects: {
-      // project3h304m5e: {
-      //   name: "Home",
-      //   icon: {
-      //     color: "#7b748d",
-      //     name: "fa-calendar"
-      //   },
-      //   tasks: {}
-      // }
-    },
+    projects: {},
     redirect: "/"
   };
 
   componentDidMount = async () => {
     if (this.state.uid) {
-      console.log(this.state.uid);
       this.ref = await base.syncState(`${this.state.uid}`, {
         context: this,
         state: "projects"
@@ -32,7 +22,7 @@ class App extends React.Component {
 
       const obj = {
         project3h304m5e: {
-          name: "Home",
+          name: "Today",
           icon: {
             color: "#7b748d",
             name: "fa-calendar"
@@ -70,6 +60,17 @@ class App extends React.Component {
     this.setState({ projects });
   };
 
+  removeProject = key => {
+    //1) Take a copy of the existing state
+    const projects = { ...this.state.projects };
+
+    //2) Remove the task by setting it to null
+    projects[key]= null;
+
+    //2) Set task object to the state
+    this.setState({ projects });
+  };
+
   addTask = task => {
     //1) Take a copy of the existing state
     const projects = { ...this.state.projects };
@@ -89,10 +90,21 @@ class App extends React.Component {
       obj.tasks[`${uniqid("task")}`] = task;
       console.log(obj);
       //2) Add task to the current state object
-      projects[`${this.props.match.params.projectId}`] = {...obj};
+      projects[`${this.props.match.params.projectId}`] = { ...obj };
     }
 
-    //2) Set task object to the stae
+    //2) Set task object to the state
+    this.setState({ projects });
+  };
+
+  removeTask = key => {
+    //1) Take a copy of the existing state
+    const projects = { ...this.state.projects };
+
+    //2) Remove the task by setting it to null
+    projects[`${this.props.match.params.projectId}`].tasks[key] = null;
+
+    //2) Set task object to the state
     this.setState({ projects });
   };
 
@@ -121,7 +133,9 @@ class App extends React.Component {
       <Home
         projectId={this.props.match.params.projectId}
         addProject={this.addProject}
+        removeProject={this.removeProject}
         addTask={this.addTask}
+        removeTask={this.removeTask}
         projects={this.state.projects}
         updateUrl={this.updateUrl}
         logout={this.logout}

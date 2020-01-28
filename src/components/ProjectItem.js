@@ -3,15 +3,29 @@ import "font-awesome/css/font-awesome.min.css";
 
 class ProjectItem extends React.Component {
   handleClick = e => {
-    this.props.updateUrl(this.props.index);
+    if (!e.target.matches('.proj_close__btn, .proj_close__btn *')) {
+      this.props.updateUrl(this.props.index);
+    }
+  }
+  
+  handleRemove = e => {
+    //1) Remove project from the state
+    this.props.removeProject(this.props.index);
+
+    //2) Update the url
+    this.props.updateUrl("project3h304m5e");
   }
 
   render() {
+    let length = 0;
+
     const colorStyle = {
       color: this.props.project.icon.color
     };
 
-    // const length = Object.keys(this.props.project.tasks).length;
+    if (this.props.project.hasOwnProperty('tasks')) {
+      length = Object.keys(this.props.project.tasks).length;
+    }
 
     return (
       <li className="project__item" onClick={this.handleClick}>
@@ -23,7 +37,10 @@ class ProjectItem extends React.Component {
         </span>
         <span className="item__content">
           {this.props.project.name}
-          {/* <small className="item__counter">{length}</small> */}
+          <small className="item__counter">{length}</small>
+        </span>
+        <span className="proj_close__btn" onClick={this.handleRemove}>
+          <i className="fa fa-close"></i>
         </span>
       </li>
     );

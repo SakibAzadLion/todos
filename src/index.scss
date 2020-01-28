@@ -346,11 +346,31 @@ APP PAGE STYLES
           .item__content {
             text-transform: capitalize;
             .item__counter {
-              color: #b9b9b9;
+              color: #ccc8c8;
               margin-left: 3px;
             }
           }
+          .proj_close__btn {
+            color: #919297;
+            margin-left: auto !important;
+            display: none;
+            z-index: 200;
+          }
         }
+        .project__item:hover {
+          .proj_close__btn {
+            display: block;
+            z-index: 200;
+          }
+        }
+      .project__item:first-child {
+        .proj_close__btn {
+          display: none;
+        }
+        .proj_close__btn {
+          display: none;
+        }
+      }
       }
     }
     .main__content {

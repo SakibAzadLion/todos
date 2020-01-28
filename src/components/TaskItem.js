@@ -5,7 +5,7 @@ class TaskItem extends React.Component {
     return (
       <li className="task__item">
         <div className="check__box">
-          <div className="checker">
+          <div className="checker" onClick={() => this.props.removeTask(this.props.index)}>
             <i className="fa fa-check"></i>
           </div>
         </div>

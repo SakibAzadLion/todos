@@ -49,11 +49,13 @@ class Home extends React.Component {
               projects={this.props.projects}
               toggleClickState={this.toggleClickState}
               updateUrl={this.props.updateUrl}
+              removeProject={this.props.removeProject}
             />
             <Content
               projectId={this.props.projectId}
               projects={this.props.projects}
               toggleClickState={this.toggleClickState}
+              removeTask={this.props.removeTask}
             />
           </div>
         </div>

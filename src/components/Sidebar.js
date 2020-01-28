@@ -13,6 +13,7 @@ class Sidebar extends React.Component {
               index={key}
               project={this.props.projects[key]}
               updateUrl={this.props.updateUrl}
+              removeProject={this.props.removeProject}
             />
           ))}
         </ul>
