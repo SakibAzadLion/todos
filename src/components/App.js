@@ -3,33 +3,48 @@ import { Redirect } from "react-router-dom";
 import firebase from "firebase";
 import Home from "./Home";
 import Login from "./Login";
-import base from "../base";
+import base, { firebaseApp } from "../base";
 import uniqid from "uniqid";
 
 class App extends React.Component {
   state = {
     uid: null,
     projects: {
-      project3h304m5e: {
-        name: "Home",
-        icon: {
-          color: "#7b748d",
-          name: "fa-calendar"
-        },
-        tasks: {}
-      }
+      // project3h304m5e: {
+      //   name: "Home",
+      //   icon: {
+      //     color: "#7b748d",
+      //     name: "fa-calendar"
+      //   },
+      //   tasks: {}
+      // }
     },
     redirect: "/"
   };
 
-  componentDidMount = () => {
-    // if (this.state.uid) {
-    //   console.log(this.state.uid);
-    //   this.ref = base.syncState(`${this.state.uid}`, {
-    //     context: this,
-    //     state: "projects"
-    //   });
-    // }
+  componentDidMount = async () => {
+    if (this.state.uid) {
+      console.log(this.state.uid);
+      this.ref = await base.syncState(`${this.state.uid}`, {
+        context: this,
+        state: "projects"
+      });
+
+      const obj = {
+        project3h304m5e: {
+          name: "Home",
+          icon: {
+            color: "#7b748d",
+            name: "fa-calendar"
+          },
+          tasks: {}
+        }
+      };
+
+      this.setState({ projects: { ...obj } });
+      // const database = base.database().ref().child(`${this.props.match.params.projectId}`);
+      // console.log(database);
+    }
 
     localStorage.removeItem("uid");
   };
@@ -41,7 +56,7 @@ class App extends React.Component {
   };
 
   componentWillUnmount() {
-    base.removeBinding(this.ref);
+    // base.removeBinding(this.ref);
   }
 
   addProject = project => {
@@ -59,10 +74,23 @@ class App extends React.Component {
     //1) Take a copy of the existing state
     const projects = { ...this.state.projects };
 
-    //2) Add task to the current state object
-    projects[`${this.props.match.params.projectId}`].tasks[
-      `${uniqid("task")}`
-    ] = task;
+    if (
+      projects[`${this.props.match.params.projectId}`].hasOwnProperty("tasks")
+    ) {
+      //2) Add task to the current state object
+      projects[`${this.props.match.params.projectId}`].tasks[
+        `${uniqid("task")}`
+      ] = task;
+    } else {
+      const obj = {
+        tasks: {}
+      };
+
+      obj.tasks[`${uniqid("task")}`] = task;
+      console.log(obj);
+      //2) Add task to the current state object
+      projects[`${this.props.match.params.projectId}`] = {...obj};
+    }
 
     //2) Set task object to the stae
     this.setState({ projects });
@@ -84,6 +112,7 @@ class App extends React.Component {
   };
 
   render() {
+    window.s = this.state;
     if (!this.state.uid) {
       return <Redirect to={this.state.redirect} />;
     }

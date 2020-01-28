@@ -4,34 +4,35 @@ import "font-awesome/css/font-awesome.min.css";
 
 class Content extends React.Component {
   render() {
-    const tasks = this.props.projects[`${this.props.projectId}`].tasks;
-    // const tasks = false;
+    // console.log(this.props.projects[`${this.props.projectId}`].tasks);
 
-    if (tasks) {
-      return (
-        <div className="main__content">
-          <h2>Today</h2>
-          <ul className="task__list">
-            {Object.keys(tasks).map(key => (
-              <TaskItem key={key} task={tasks[key]} />
-            ))}
-          </ul>
-          <button
-            className="add__task__btn"
-            onClick={() => this.props.toggleClickState("Task")}
-          >
-            <i className="fa fa-plus"></i>
-          </button>
-        </div>
-      );
+    if (Object.keys(this.props.projects).length > 0) {
+      const tasks = { ...this.props.projects[`${this.props.projectId}`].tasks };
+      
+      if (tasks) {
+        return (
+          <div className="main__content">
+            <h2>Today</h2>
+            <ul className="task__list">
+              {Object.keys(tasks).map(key => (
+                <TaskItem key={key} task={tasks[key]} />
+              ))}
+            </ul>
+            <button
+              className="add__task__btn"
+              onClick={() => this.props.toggleClickState("Task")}
+            >
+              <i className="fa fa-plus"></i>
+            </button>
+          </div>
+        );
+      }
     }
+
 
     return (
       <div className="main__content">
         <h2>Today</h2>
-        <ul className="task__list">
-          <li>Error</li>
-        </ul>
         <button
           className="add__task__btn"
           onClick={() => this.props.toggleClickState("Task")}
