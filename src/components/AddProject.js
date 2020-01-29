@@ -15,14 +15,13 @@ class AddProject extends React.Component {
       icon: {
         color: this.props.projectInfo.color,
         name: "fa-circle"
-      },
-      tasks: {}
+      }
     };
 
     //3) Add project to the state
     this.props.addProject(project);
-
-    //3) Toogle project state
+    
+    //4) Toogle project state
     this.props.toggleClickState("Project");
   };
 

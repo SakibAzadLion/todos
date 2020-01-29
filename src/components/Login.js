@@ -57,6 +57,16 @@ class Login extends React.Component {
       .catch(err => console.log(err));
   };
 
+  authenticate = provider => {
+    const authProvider = new firebase.auth[`${provider}AuthProvider`]();
+
+    firebaseApp
+      .auth()
+      .signInWithPopup(authProvider)
+      .then(this.authHandler)
+      .catch(err => console.log(err));
+  };
+
   render() {
     if (this.state.isRegisterClicked) {
       return (
@@ -85,8 +95,8 @@ class Login extends React.Component {
               <button type="submit" className="login__Button">
                 REGISTER
               </button>
-              <button className="google">GOOGLE</button>
-              <button className="facebook">FACEBOOK</button>
+              <button className="google" onClick={() => this.authenticate("Google")}>GOOGLE</button>
+              <button className="facebook" onClick={() => this.authenticate("Facebook")}>FACEBOOK</button>
             </form>
           </div>
         </div>
@@ -116,9 +126,9 @@ class Login extends React.Component {
             >
               Register
             </span>
-            <button className="login__Button">LOGIN</button>
-            <button className="google">GOOGLE</button>
-            <button className="facebook">FACEBOOK</button>
+            <button type="submit" className="login__Button">LOGIN</button>
+            <button className="google" onClick={() => this.authenticate("Google")}>GOOGLE</button>
+            <button className="facebook" onClick={() => this.authenticate("Facebook")}>FACEBOOK</button>
           </form>
         </div>
       </div>
