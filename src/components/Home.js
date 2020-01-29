@@ -46,6 +46,7 @@ class Home extends React.Component {
         <div className="container">
           <div className="content">
             <Sidebar
+              projectId={this.props.projectId}
               projects={this.props.projects}
               toggleClickState={this.toggleClickState}
               updateUrl={this.props.updateUrl}

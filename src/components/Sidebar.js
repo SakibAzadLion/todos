@@ -11,6 +11,7 @@ class Sidebar extends React.Component {
             <ProjectItem
               key={key}
               index={key}
+              projectId={this.props.projectId}
               project={this.props.projects[key]}
               updateUrl={this.props.updateUrl}
               removeProject={this.props.removeProject}
