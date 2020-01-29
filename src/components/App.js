@@ -10,7 +10,8 @@ class App extends React.Component {
   state = {
     uid: null,
     projects: {},
-    redirect: "/"
+    redirect: "/",
+    loading: true
   };
 
   componentDidMount = async () => {
@@ -44,7 +45,7 @@ class App extends React.Component {
   };
 
   componentWillUnmount() {
-    base.removeBinding(this.ref);
+    // base.removeBinding(this.ref);
   }
 
   addProject = project => {
@@ -130,6 +131,7 @@ class App extends React.Component {
     return (
       <Home
         projectId={this.props.match.params.projectId}
+        loading={this.state.loading}
         addProject={this.addProject}
         removeProject={this.removeProject}
         addTask={this.addTask}

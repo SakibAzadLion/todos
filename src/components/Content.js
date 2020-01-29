@@ -1,14 +1,13 @@
 import React from "react";
+import { BeatLoader } from "react-spinners";
 import TaskItem from "./TaskItem";
 import "font-awesome/css/font-awesome.min.css";
 
 class Content extends React.Component {
   render() {
-    // console.log(this.props.projects[`${this.props.projectId}`].tasks);
-    let projectName = "";
 
     if (Object.keys(this.props.projects).length > 0) {
-      projectName = this.props.projects[`${this.props.projectId}`].name;
+      const projectName = this.props.projects[`${this.props.projectId}`].name;
       const tasks = { ...this.props.projects[`${this.props.projectId}`].tasks };
 
       if (tasks) {
@@ -38,13 +37,16 @@ class Content extends React.Component {
 
     return (
       <div className="main__content">
-        <h2>{projectName}</h2>
-        <button
-          className="add__task__btn"
-          onClick={() => this.props.toggleClickState("Task")}
-        >
-          <i className="fa fa-plus"></i>
-        </button>
+        {this.props.loading ? (
+          <BeatLoader
+            size={10}
+            //size={"150px"} this also works
+            color={"#926cbc"}
+            loading={this.props.loading}
+          />
+        ) : (
+          ""
+        )}
       </div>
     );
   }

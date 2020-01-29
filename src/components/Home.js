@@ -52,6 +52,7 @@ class Home extends React.Component {
               removeProject={this.props.removeProject}
             />
             <Content
+              loading={this.props.loading}
               projectId={this.props.projectId}
               projects={this.props.projects}
               toggleClickState={this.toggleClickState}

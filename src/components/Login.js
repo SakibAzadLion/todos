@@ -11,7 +11,7 @@ class Login extends React.Component {
   regPassRef = React.createRef();
 
   state = {
-    isRegisterClicked: false
+    isRegisterClicked: true
   };
 
   componentWillMount() {
@@ -28,8 +28,6 @@ class Login extends React.Component {
 
     this.props.history.push("project3h304m5e");
   };
-
-  // {code: "auth/user-not-found", message: "There is no user record corresponding to this identifier. The user may have been deleted."}
 
   handelErr = err => {
     const errMessage = err.code

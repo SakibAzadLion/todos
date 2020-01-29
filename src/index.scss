@@ -93,6 +93,15 @@ button:hover {
 /*==========================
 TOAST STYLES
 ============================*/
+.css-0 {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+/*==========================
+TOAST STYLES
+============================*/
 .background__color {
   background-color: #926cbc;
   color: $text_light;
@@ -375,14 +384,14 @@ APP PAGE STYLES
             z-index: 200;
           }
         }
-      .project__item:first-child {
-        .proj_close__btn {
-          display: none;
+        .project__item:first-child {
+          .proj_close__btn {
+            display: none;
+          }
+          .proj_close__btn {
+            display: none;
+          }
         }
-        .proj_close__btn {
-          display: none;
-        }
-      }
       }
     }
     .main__content {
