@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import firebase from "firebase";
 import Home from "./Home";
 import Login from "./Login";
-import base, { firebaseApp } from "../base";
+import base from "../base";
 import uniqid from "uniqid";
 
 class App extends React.Component {
@@ -32,8 +32,6 @@ class App extends React.Component {
       };
 
       this.setState({ projects: { ...obj } });
-      // const database = base.database().ref().child(`${this.props.match.params.projectId}`);
-      // console.log(database);
     }
 
     localStorage.removeItem("uid");
@@ -46,7 +44,7 @@ class App extends React.Component {
   };
 
   componentWillUnmount() {
-    // base.removeBinding(this.ref);
+    base.removeBinding(this.ref);
   }
 
   addProject = project => {

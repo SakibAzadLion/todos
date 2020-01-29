@@ -91,6 +91,18 @@ button:hover {
 }
 
 /*==========================
+TOAST STYLES
+============================*/
+.background__color {
+  background-color: #926cbc;
+  color: $text_light;
+  padding: 3px 8px;
+  min-height: 50px;
+  // max-height: 200px!important;
+  border-radius: $border_radius;
+}
+
+/*==========================
 DROPDOWN STYLE
 ============================*/
 .dropdown {

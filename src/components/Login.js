@@ -1,6 +1,8 @@
 import React from "react";
 import firebase from "firebase";
 import { firebaseApp } from "../base";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class Login extends React.Component {
   emailRef = React.createRef();
@@ -27,6 +29,23 @@ class Login extends React.Component {
     this.props.history.push("project3h304m5e");
   };
 
+  // {code: "auth/user-not-found", message: "There is no user record corresponding to this identifier. The user may have been deleted."}
+
+  handelErr = err => {
+    const errMessage = err.code
+      .replace("auth/", "")
+      .replace(/-/g, " ")
+      .toUpperCase();
+
+    toast(`${errMessage}`, {
+      autoClose: 4000,
+      position: toast.POSITION.BOTTOM_CENTER,
+      hideProgressBar: true,
+      className: "background__color",
+      bodyClassName: "grow_font__size"
+    });
+  };
+
   loginWithPass = e => {
     //1) Prevent from submiting
     e.preventDefault();
@@ -39,7 +58,7 @@ class Login extends React.Component {
         this.passRef.current.value
       )
       .then(this.authHandler)
-      .catch(err => console.log(err));
+      .catch(this.handelErr);
   };
 
   registerWithPass = e => {
@@ -54,7 +73,7 @@ class Login extends React.Component {
         this.regPassRef.current.value
       )
       .then(u => console.log(u))
-      .catch(err => console.log(err));
+      .catch(this.handelErr);
   };
 
   authenticate = provider => {
@@ -64,7 +83,7 @@ class Login extends React.Component {
       .auth()
       .signInWithPopup(authProvider)
       .then(this.authHandler)
-      .catch(err => console.log(err));
+      .catch(this.handelErr);
   };
 
   render() {
@@ -95,8 +114,18 @@ class Login extends React.Component {
               <button type="submit" className="login__Button">
                 REGISTER
               </button>
-              <button className="google" onClick={() => this.authenticate("Google")}>GOOGLE</button>
-              <button className="facebook" onClick={() => this.authenticate("Facebook")}>FACEBOOK</button>
+              <button
+                className="google"
+                onClick={() => this.authenticate("Google")}
+              >
+                GOOGLE
+              </button>
+              <button
+                className="facebook"
+                onClick={() => this.authenticate("Facebook")}
+              >
+                FACEBOOK
+              </button>
             </form>
           </div>
         </div>
@@ -126,11 +155,24 @@ class Login extends React.Component {
             >
               Register
             </span>
-            <button type="submit" className="login__Button">LOGIN</button>
-            <button className="google" onClick={() => this.authenticate("Google")}>GOOGLE</button>
-            <button className="facebook" onClick={() => this.authenticate("Facebook")}>FACEBOOK</button>
+            <button type="submit" className="login__Button">
+              LOGIN
+            </button>
+            <button
+              className="google"
+              onClick={() => this.authenticate("Google")}
+            >
+              GOOGLE
+            </button>
+            <button
+              className="facebook"
+              onClick={() => this.authenticate("Facebook")}
+            >
+              FACEBOOK
+            </button>
           </form>
         </div>
+        <ToastContainer />
       </div>
     );
   }
