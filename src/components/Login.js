@@ -11,7 +11,7 @@ class Login extends React.Component {
   regPassRef = React.createRef();
 
   state = {
-    isRegisterClicked: true
+    isRegisterClicked: false
   };
 
   componentWillMount() {
@@ -70,7 +70,7 @@ class Login extends React.Component {
         this.regEmailRef.current.value,
         this.regPassRef.current.value
       )
-      .then(u => console.log(u))
+      .then(this.authHandler)
       .catch(this.handelErr);
   };
 

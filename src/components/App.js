@@ -2,7 +2,6 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import firebase from "firebase";
 import Home from "./Home";
-import Login from "./Login";
 import base from "../base";
 import uniqid from "uniqid";
 
@@ -64,7 +63,7 @@ class App extends React.Component {
     const projects = { ...this.state.projects };
 
     //2) Remove the task by setting it to null
-    projects[key]= null;
+    projects[key] = null;
 
     //2) Set task object to the state
     this.setState({ projects });
@@ -74,20 +73,24 @@ class App extends React.Component {
     //1) Take a copy of the existing state
     const projects = { ...this.state.projects };
 
+    //2) If tasks object is there then add the task
+    //   else add tasks object then add the task 
     if (
       projects[`${this.props.match.params.projectId}`].hasOwnProperty("tasks")
     ) {
-      //2) Add task to the current state object
+      // Add task to the current state object
       projects[`${this.props.match.params.projectId}`].tasks[
         `${uniqid("task")}`
       ] = task;
     } else {
+      //Empty task object
       const obj = {
         tasks: {}
       };
 
+      // Add task to the current state object
       obj.tasks[`${uniqid("task")}`] = task;
-      console.log(obj);
+
       //2) Add task to the current state object
       projects[`${this.props.match.params.projectId}`] = { ...obj };
     }
